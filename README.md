@@ -1,1 +1,1 @@
-# TeleGPT
+# TeleAI
