@@ -1,12 +1,11 @@
+import os
 from telegram.ext import *
 import tensorflow as tf
 import cv2
 import numpy as np
 from io import BytesIO
 
-with open("bot_api_token.txt", "r") as f:
-    # gets the API TOKEN
-    API_TOKEN = f.read()
+API_TOKEN = os.getenv('KEY')
 
 class_names = ["Plane", "Car", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"]
 
@@ -31,7 +30,6 @@ def help(update, cntext):
         """
         /start - Starts conversation
         /help - Shows this message
-        /train - Trains neural network
         """
     )
 

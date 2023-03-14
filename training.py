@@ -1,6 +1,4 @@
 import tensorflow as tf
-import numpy as np
-import os
 
 
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
