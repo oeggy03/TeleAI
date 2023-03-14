@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from telegram.ext import *
 import tensorflow as tf
 import cv2
