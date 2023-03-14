@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv
-load_dotenv()
 from telegram.ext import *
 import tensorflow as tf
 import cv2
 import numpy as np
 from io import BytesIO
+
+load_dotenv()
 
 API_TOKEN = os.getenv('KEY')
 
@@ -22,18 +23,21 @@ model.load_weights("model.h5")
 print("Loaded model from disk")
 model.compile(optimizer="adam", loss= "sparse_categorical_crossentropy", metrics=["accuracy"])
 
+help_text = """
+    /start - Starts conversation
+    /help - Shows this message
+
+    This is a telegram bot that is capable of identifying a plane, car, bird, cat , deer, dog, frog, horse, ship, or truck.
+    It was created with Python, and uses Tensorflow to train the CIFAR10 dataset.
+    Apologies for any inaccuracies in classification. Upload any image of the listed objects to get started!
+"""
 
 # When 
 def start(update, context):
-    update.message.reply_text("Hello!")
+    update.message.reply_text("Hello! Please use /help to see the available commands!")
     
 def help(update, cntext):
-    update.message.reply_text(
-        """
-        /start - Starts conversation
-        /help - Shows this message
-        """
-    )
+    update.message.reply_text(help_text)
 
 # def train(update, context):
 #     update.message.reply_text("Model is being trained ...")
@@ -44,7 +48,7 @@ def help(update, cntext):
 #     update.message.reply_text("Done! You can now send a photo")
 
 def handle_message(update, context):
-    update.message.reply_text("Please train the model and send a picture!")
+    update.message.reply_text("Please send a picture or press /help for more info!")
 
 # process image from user
 def handle_photo(update, context):
@@ -62,7 +66,7 @@ def handle_photo(update, context):
     # activation of all neurons. However, we want the neuron with the highest activation
     prediction = model.predict(np.array([img / 255]))
     # np.argmax(prediction) gives the index of the neuron with the highest prediction
-    update.message.reply_text(f"In this imaage I see a {class_names[np.argmax(prediction)]}")
+    update.message.reply_text(f"This is a {class_names[np.argmax(prediction)]}!")
 
 # for telegram bot
 updater = Updater(API_TOKEN, use_context = True)
