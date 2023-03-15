@@ -46,4 +46,4 @@ Make sure you have Python3 installed. I am using Python 3.11.2
 4. Done! The bot should be able to recognise the image.
 
 
-* Please note that AI is not perfect, and will classify objects wrongly at times, especially if the object is dark / shadowy. However, it should work well as long as the subject of the photo is obvious. *
+*Please note that AI is not perfect, and will classify objects wrongly at times, especially if the object is dark / shadowy. However, it should work well as long as the subject of the photo is obvious.*
