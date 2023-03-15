@@ -1,7 +1,7 @@
 # TeleAI
 You can test the bot by going to https://t.me/teleaimage_bot, or setting it up yourself. 
 
-The model has been pre-trained, and the bot is ready to go. However, if you wish to see the training in action, you may run the training.py file after installing all the necessary packages.
+The model has been trained, and the bot is ready to go. However, if you wish to see the training in action, you may run the training.py file after installing all the necessary packages.
 
 ## About this bot
 This bot has been trained using OpenCV, Tensorflow and the keras deep learning API, using the CIFAR10 dataset. Since this is purely a demo project, the smaller and simpler CIFAR10 was chosen over CIFAR100 or other more advanced datasets.
