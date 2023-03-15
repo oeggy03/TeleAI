@@ -10,17 +10,16 @@ load_dotenv()
 
 API_TOKEN = os.getenv('KEY')
 
-class_names = ["Plane", "Car", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"]
-
+class_names = ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 # load json and create model
 json_file = open('model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 model = tf.keras.models.model_from_json(loaded_model_json)
 
-# load weights into new model
 model.load_weights("model.h5")
 print("Loaded model from disk")
+
 model.compile(optimizer="adam", loss= "sparse_categorical_crossentropy", metrics=["accuracy"])
 
 help_text = """
@@ -42,26 +41,20 @@ It was created with Python, and uses Tensorflow to train the CIFAR10 dataset.
 Upload any image of the listed objects to get started!
 """
 
-# When 
 def start(update, context):
-    update.message.reply_text("Hello! Please use /help to see the available commands!")
+    update.message.reply_text("Hello! Loading model...")
+    # load weights into new model
+    update.message.reply_text("Model loaded! Please use /help to get started!")
     
 def help(update, cntext):
     update.message.reply_text(help_text)
 
-# def train(update, context):
-#     update.message.reply_text("Model is being trained ...")
-#     model.compile(optimizer="adam", loss= "sparse_categorical_crossentropy", metrics=["accuracy"])
-#     # fit on training data with 10 epochs
-#     model.fit(x_train, y_train, epochs = 10, validation_data = (x_test, y_test))
-#     model.save("cifar_classifier.model")
-#     update.message.reply_text("Done! You can now send a photo")
 
-def handle_message(update, context):
+def message_handler(update, context):
     update.message.reply_text("Please send a picture or press /help for more info!")
 
 # process image from user
-def handle_photo(update, context):
+def photo_handler(update, context):
     # gets the last photo from user
     file = context.bot.get_file(update.message.photo[-1].file_id) 
     # get photo as byte array
@@ -82,11 +75,13 @@ def handle_photo(update, context):
 updater = Updater(API_TOKEN, use_context = True)
 dp = updater.dispatcher
 
+# for commands
 dp.add_handler(CommandHandler("start", start))
 dp.add_handler(CommandHandler("help", help))
-# dp.add_handler(CommandHandler("train", train))
-dp.add_handler(MessageHandler(Filters.text, handle_message))
-dp.add_handler(MessageHandler(Filters.photo, handle_photo))
+
+# for user messages
+dp.add_handler(MessageHandler(Filters.text, message_handler))
+dp.add_handler(MessageHandler(Filters.photo, photo_handler))
 
 updater.start_polling()
 updater.idle()
