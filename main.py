@@ -69,7 +69,7 @@ def photo_handler(update, context):
     # activation of all neurons. However, we want the neuron with the highest activation
     prediction = model.predict(np.array([img / 255]))
     # np.argmax(prediction) gives the index of the neuron with the highest prediction
-    update.message.reply_text(f"This is a {class_names[np.argmax(prediction)]}!")
+    update.message.reply_text(f"This is a {class_names[np.argmax(prediction)]}! Certainty: {np.max(prediction)}")
 
 # for telegram bot
 updater = Updater(API_TOKEN, use_context = True)
