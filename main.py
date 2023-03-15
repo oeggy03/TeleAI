@@ -24,12 +24,22 @@ print("Loaded model from disk")
 model.compile(optimizer="adam", loss= "sparse_categorical_crossentropy", metrics=["accuracy"])
 
 help_text = """
-    /start - Starts conversation
-    /help - Shows this message
+/start - Starts conversation
+/help - Shows this message
 
-    This is a telegram bot that is capable of identifying a plane, car, bird, cat , deer, dog, frog, horse, ship, or truck.
-    It was created with Python, and uses Tensorflow to train the CIFAR10 dataset.
-    Apologies for any inaccuracies in classification. Upload any image of the listed objects to get started!
+This is a telegram bot that is capable of identifying a:
+plane 
+car
+bird
+cat
+deer
+dog
+frog
+horse
+ship
+or truck.
+It was created with Python, and uses Tensorflow to train the CIFAR10 dataset.
+Upload any image of the listed objects to get started!
 """
 
 # When 
