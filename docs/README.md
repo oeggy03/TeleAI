@@ -3,6 +3,8 @@ You can test the bot by setting it up yourself.
 
 The model has been trained, and the bot is ready to go. However, if you wish to see the training in action, you may run the training.py file after installing all the necessary packages.
 
+<img src="../assets/teleai_proj.png" width="80%" display='block' margin-left="auto" margin-right="auto"/>
+
 ## About this bot
 This bot has been trained using OpenCV, Tensorflow and the keras deep learning API, using the CIFAR10 dataset. Since this is purely a demo project, the smaller and simpler CIFAR10 was chosen over CIFAR100 or other more advanced datasets.
 
@@ -26,7 +28,8 @@ Truck*
 Make sure you have Python3 installed. I am using Python 3.11.2
 
 #### Clone the repository:
-1. In a git bash terminal, type `https://github.com/oeggy03/TeleAI.git`
+1. Navigate to an empty directory.
+2. In a git bash terminal, type `git clone https://github.com/oeggy03/TeleAI.git`
 
 #### Install the packages by typing:
 `pip install -r ./requirements.txt`
